@@ -5,3 +5,7 @@ var budgetController = (function () {
     return a + x;
   };
 })();
+
+var UIController = (function () {
+  // add code here
+})();
