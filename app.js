@@ -9,6 +9,7 @@ var UIController = (function () {
     inputType: ".add__type",
     inputDescription: ".add__description",
     inputValue: ".add__value",
+    inputButton: ".add__btn",
   };
   return {
     getinput: function () {
@@ -17,6 +18,9 @@ var UIController = (function () {
         description: document.querySelector(domStrings.inputDescription).value,
         value: document.querySelector(domStrings.inputValue).value,
       };
+    },
+    getDomStrings: function () {
+      return domStrings;
     },
   };
 })();
@@ -27,6 +31,8 @@ var UIController = (function () {
 
 // GLOBAL APP CONTROLLER
 var controller = (function (budgetCtrl, UICtrl) {
+  var DOM = UICtrl.getDomStrings();
+
   var controlAddItem = function () {
     // TO DO LIST
     // 1. GET THE FILED INPUT DATA
@@ -37,7 +43,9 @@ var controller = (function (budgetCtrl, UICtrl) {
     // 4. CALUCLATE THE BUDGET
     // 5. DIPLAY ON THE UI
   };
-  document.querySelector(".add__btn").addEventListener("click", controlAddItem);
+  document
+    .querySelector(DOM.inputButton)
+    .addEventListener("click", controlAddItem);
   //   this is being assinged to the global document for use
   document.addEventListener("keypress", function (event) {
     if (event.keyCode === 13 || event.keyCode === 13) {
