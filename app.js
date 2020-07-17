@@ -14,7 +14,20 @@ var UIController = (function () {
 
 // GLOBAL APP CONTROLLER
 var controller = (function (budgetCtrl, UICtrl) {
-  document.querySelector(".add__btn").addEventListener("click", function () {
-    console.log("buttong was clicked");
+  var controlAddItem = function () {
+    // TO DO LIST
+    // 1. GET THE FILED INPUT DATA
+    // 2. ADD THE ITEM TO THE BUDGET CONTROLLER
+    // 3. ADD THE ITEM TO THE UI
+    // 4. CALUCLATE THE BUDGET
+    // 5. DIPLAY ON THE UI
+    console.log("testing testing ");
+  };
+  document.querySelector(".add__btn").addEventListener("click", controlAddItem);
+  //   this is being assinged to the global document for use
+  document.addEventListener("keypress", function (event) {
+    if (event.keyCode === 13 || event.keyCode === 13) {
+      controlAddItem();
+    }
   });
 })(budgetController, UIController);
