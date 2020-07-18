@@ -11,17 +11,39 @@ var budgetController = (function () {
     this.value = value;
   };
 
- 
   var data = {
-    allItems =  {
+    allItems: {
       exp: [],
-      inc: []
+      inc: [],
     },
     totals: {
       exp: 0,
-      inc: 0
-    }
-  }
+      inc: 0,
+    },
+  };
+
+  return {
+    addItem: function (type, descr, valu) {
+      //create new ID
+      if (data.allItems[type].length > 0) {
+        ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+      } else {
+        ID = 0;
+      }
+      //create new item based on inc or exp type
+      if (type === "exp") {
+        var newItem = new Expense(ID, descr, valu);
+      } else if (type === "inc") {
+        var newItem = new Income(ID, descr, valu);
+      }
+      //push into our data structure
+      data.allItems[type].push(newItem);
+      return newItem;
+    },
+    testing: function () {
+      console.log(data);
+    },
+  };
 })();
 
 // UI CONTROLLER
@@ -67,11 +89,18 @@ var controller = (function (budgetCtrl, UICtrl) {
   };
 
   var controlAddItem = function () {
+    var input, newItem;
+
     // TO DO LIST
     // 1. GET THE FILED INPUT DATA
-    var input = UICtrl.getinput();
+    input = UICtrl.getinput(); //input has already grabbed the object so now you specify what you want from input by saying input.type etc in the newitem instance you just created. essenttially you grabbed the instance and then added an ID #
 
     // 2. ADD THE ITEM TO THE BUDGET CONTROLLER
+    newItem = budgetController.addItem(
+      input.type,
+      input.description,
+      input.value
+    );
     // 3. ADD THE ITEM TO THE UI
     // 4. CALUCLATE THE BUDGET
     // 5. DIPLAY ON THE UI
